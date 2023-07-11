@@ -12,7 +12,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         version: [ 2023.2 ]
-        linter: [ go, jvm ]  # android-community, dotnet, go, js, jvm, jvm-community, php, python, python-community
+        linter: [ android-community, dotnet, go, js, jvm, jvm-community, php, python, python-community ]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
