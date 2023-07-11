@@ -1,11 +1,6 @@
 ARG BASE_TAG="bullseye-slim"
 FROM debian:$BASE_TAG
 
-RUN dpkgArch="$(dpkg --print-architecture)" && if [ "$dpkgArch" != "amd64" ];  \
-      then echo "Unsupported architecture by Android SDK:  \
-          https://developer.android.com/studio#command-line-tools-only" >&2;  \
-      exit 1; fi
-
 ENV HOME="/root" LC_ALL="en_US.UTF-8" QODANA_DIST="/opt/idea" QODANA_DATA="/data"
 ENV JAVA_HOME="$QODANA_DIST/jbr" QODANA_DOCKER="true" QODANA_CONF="$HOME/.config/idea"
 
