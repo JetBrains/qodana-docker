@@ -22,6 +22,14 @@ jobs:
       uses: hadolint/hadolint-action@v3.1.0
       with:
         dockerfile: ${{ matrix.version }}/${{ matrix.linter }}/Dockerfile
+    - name: Run KICS Scan
+      uses: checkmarx/kics-github-action@v1.7.0
+      with:
+        path: '${{ matrix.version }}/${{ matrix.linter }}/Dockerfile'
+        output_path: myResults/
+    - name: Display KICS results
+      run: |
+        cat myResults/results.json
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
