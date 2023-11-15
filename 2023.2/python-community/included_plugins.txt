@@ -6,6 +6,7 @@ com.intellij.platform.images
 org.editorconfig.editorconfigjetbrains
 org.jetbrains.plugins.yaml
 org.jetbrains.plugins.textmate
+com.jetbrains.plugins.ini4idea
 com.jetbrains.sh
 Git4Idea
 hg4idea
@@ -17,4 +18,3 @@ com.jetbrains.python.sharedIndexes.downloadable
 com.jetbrains.pycharm.community.customization
 com.jetbrains.pycharm.community.sharedIndexes.bundled
 org.toml.lang
-com.jetbrains.codeWithMe
