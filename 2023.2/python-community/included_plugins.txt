@@ -18,4 +18,3 @@ com.jetbrains.python.sharedIndexes.downloadable
 com.jetbrains.pycharm.community.customization
 com.jetbrains.pycharm.community.sharedIndexes.bundled
 org.toml.lang
-com.jetbrains.codeWithMe

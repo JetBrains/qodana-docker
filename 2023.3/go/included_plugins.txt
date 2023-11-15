@@ -34,4 +34,3 @@ org.jetbrains.plugins.less
 org.jetbrains.plugins.sass
 org.jetbrains.plugins.vue
 org.intellij.plugins.postcss
-com.jetbrains.codeWithMe

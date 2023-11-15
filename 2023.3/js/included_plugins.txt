@@ -41,4 +41,3 @@ com.intellij.plugins.webcomponents
 com.jetbrains.plugins.webDeployment
 com.intellij.plugins.dependencyAnalysis
 org.jetbrains.security.package-checker
-com.jetbrains.codeWithMe
