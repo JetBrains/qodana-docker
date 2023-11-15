@@ -53,3 +53,4 @@ com.android.tools.idea.smali
 org.toml.lang
 androidx.compose.plugins.idea
 org.jetbrains.security.package-checker
+com.jetbrains.codeWithMe
