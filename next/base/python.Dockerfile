@@ -1,5 +1,17 @@
 FROM debianbase
 
+# renovate: datasource=repology depName=debian_11/bzip2 versioning=loose
+ENV BZIP2_VERSION="1.0.8-4"
+# renovate: datasource=repology depName=debian_11/libglib2.0-0 versioning=loose
+ENV LIBGLIB2_0_0_VERSION="2.66.8-1"
+# renovate: datasource=repology depName=debian_11/libsm6 versioning=loose
+ENV LIBSM6_VERSION="2:1.2.3-1"
+# renovate: datasource=repology depName=debian_11/libxext6 versioning=loose
+ENV LIBXEXT6_VERSION="2:1.3.3-1.1"
+# renovate: datasource=repology depName=debian_11/libxrender1 versioning=loose
+ENV LIBXRENDER1_VERSION="1:0.9.10-1"
+
+
 ENV CONDA_DIR="/opt/miniconda3" \
     CONDA_ENVS_PATH="$QODANA_DATA/cache/conda/envs" \
     PIP_CACHE_DIR="$QODANA_DATA/cache/.pip/" \
@@ -15,11 +27,11 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     --mount=target=/var/cache/apt,type=cache,sharing=locked \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      bzip2=1.0.8-4 \
-      libglib2.0-0=2.66.8-1 \
-      libsm6=2:1.2.3-1 \
-      libxext6=2:1.3.3-1.1 \
-      libxrender1=1:0.9.10-1 && \
+      bzip2=$BZIP2_VERSION \
+      libglib2.0-0=$LIBGLIB2_0_0_VERSION \
+      libsm6=$LIBSM6_VERSION \
+      libxext6=$LIBXEXT6_VERSION \
+      libxrender1=$LIBXRENDER1_VERSION && \
     mkdir -m 777 -p $QODANA_DATA/cache && \
     dpkgArch="$(dpkg --print-architecture)" && \
     case "$dpkgArch" in \
