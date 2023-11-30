@@ -12,7 +12,7 @@ ENV JAVA_HOME="$QODANA_DIST/jbr" \
     QODANA_CONF="$HOME/.config/idea" \
     PATH="$QODANA_DIST/bin:$PATH"
 
-ENV RIDER_UNREAL_ROOT="/data/unrealEngine" DOTNET_ROOT="/usr/share/dotnet"
+ENV RIDER_UNREAL_ROOT="/data/unrealEngine" DOTNET_ROOT="/usr/share/dotnet" NUGET_ROOT="/root/.nuget"
 
 # Not using the URL https://dot.net/v1/dotnet-install.sh because of https://github.com/dotnet/install-scripts/issues/276
 ARG DOTNET_INSTALL_SH_REVISION="40434288dc5bbda41eafcbcbbc5c0fbbe028fb30"
@@ -48,7 +48,8 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     bash /tmp/dotnet-install.sh -c $DOTNET_CHANNEL_A -i $DOTNET_ROOT && \
     bash /tmp/dotnet-install.sh -c $DOTNET_CHANNEL_B -i $DOTNET_ROOT && \
     bash /tmp/dotnet-install.sh -c $DOTNET_CHANNEL_C -i $DOTNET_ROOT && \
-    chmod 777 -R $DOTNET_ROOT
+    chmod 777 -R $DOTNET_ROOT && \
+    chmod 777 -R $NUGET_ROOT
 
 ENV PATH="/opt/yarn/bin:$PATH"
 COPY --from=node_base /usr/local/bin/node /usr/local/bin/
