@@ -4,6 +4,7 @@ ARG TARGETPLATFORM
 ARG DEVICEID
 ENV DEVICEID=$DEVICEID
 COPY $TARGETPLATFORM $QODANA_DIST
+COPY disabled_plugins.txt $QODANA_CONF
 RUN chmod +x $QODANA_DIST/bin/*.sh $QODANA_DIST/bin/qodana && \
     update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 0 && \
     update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 0 && \
