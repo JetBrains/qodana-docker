@@ -1,4 +1,4 @@
-ARG NODE_TAG="16-bullseye-slim"
+ARG NODE_TAG="20-bullseye-slim"
 ARG PHP_TAG="8.2-cli-bullseye"
 ARG COMPOSER_TAG="2.7.1"
 FROM node:$NODE_TAG AS node_base
