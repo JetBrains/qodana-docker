@@ -37,3 +37,4 @@ org.jetbrains.android
 org.jetbrains.idea.gradle.dsl
 com.android.tools.idea.smali
 org.toml.lang
+Coverage
