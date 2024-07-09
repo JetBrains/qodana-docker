@@ -50,3 +50,9 @@ intellij.vitejs
 intellij.prettierJS
 com.deadlock.scsyntax
 com.intellij.jsonpath
+intellij.python.scientific
+intellij.python.scientific
+intellij.python.core.impl
+intellij.notebooks.ui
+intellij.notebooks.core
+intellij.jupyter.py
