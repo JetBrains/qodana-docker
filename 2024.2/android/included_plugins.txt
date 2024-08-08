@@ -1,4 +1,5 @@
 org.intellij.qodana
+
 org.intellij.intelliLang
 com.intellij.configurationScript
 com.intellij.properties
