@@ -1,7 +1,6 @@
 org.intellij.qodana
 org.intellij.intelliLang
 com.intellij.configurationScript
-com.intellij.properties
 com.intellij.platform.images
 org.editorconfig.editorconfigjetbrains
 org.jetbrains.plugins.yaml
@@ -45,7 +44,6 @@ JSIntentionPowerPack
 com.intellij.plugins.webcomponents
 Karma
 XPathView
-com.intellij.plugins.html.instantEditing
 com.intellij.css
 org.jetbrains.plugins.less
 org.jetbrains.plugins.sass

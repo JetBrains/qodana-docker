@@ -19,7 +19,6 @@ intellij.charts
 intellij.indexing.shared.core
 intellij.indexing.shared
 Pythonid
-intellij.python.community.impl
 com.jetbrains.pycharm.pro.customization
 com.jetbrains.pycharm.pro.sharedIndexes.bundled
 com.intellij.plugins.dependencyAnalysis
@@ -32,7 +31,6 @@ JavaScript
 JSIntentionPowerPack
 com.intellij.plugins.webcomponents
 Karma
-XPathView
 com.intellij.css
 org.jetbrains.plugins.less
 org.jetbrains.plugins.sass

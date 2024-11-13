@@ -12,11 +12,9 @@ hg4idea
 tanvd.grazi
 intellij.indexing.shared.core
 intellij.webp
-AntSupport
 DevKit
 JUnit
 TestNG-J
-XPathView
 com.intellij.gradle
 org.jetbrains.plugins.gradle.maven
 org.jetbrains.plugins.javaFX
@@ -24,7 +22,6 @@ com.intellij.java
 com.intellij.java-i18n
 com.intellij.java.ide
 com.intellij.properties
-com.intellij.uiDesigner
 org.intellij.groovy
 org.jetbrains.idea.eclipse
 org.jetbrains.idea.maven
@@ -35,5 +32,4 @@ org.jetbrains.kotlin
 org.jetbrains.plugins.gradle
 org.jetbrains.android
 org.jetbrains.idea.gradle.dsl
-com.android.tools.idea.smali
 org.toml.lang
