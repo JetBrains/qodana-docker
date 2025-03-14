@@ -1,1 +1,2 @@
 com.jetbrains.codeWithMe
+org.jetbrains.plugins.clion.ctest
