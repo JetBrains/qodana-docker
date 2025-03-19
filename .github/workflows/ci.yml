@@ -44,6 +44,5 @@ jobs:
               git add .
               git commit -m "QD-8148 Update \`${{ matrix.release }}\` Dockerfiles"
               git push
-              exit 1
           fi
         if: steps.changes.outputs.dockerfiles == 'true'

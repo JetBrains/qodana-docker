@@ -51,7 +51,6 @@ ARG ANDROID_SDK_SHA256="0bebf59339eaa534f4217f8aa0972d14dc49e7207be225511073c661
 ARG ANDROID_API_LEVEL="33"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=SC2174
-# test
 RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     --mount=target=/var/cache/apt,type=cache,sharing=locked \
     apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends unzip && \
