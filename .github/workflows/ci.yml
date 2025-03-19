@@ -6,9 +6,12 @@ on:
       - main
     paths:
       - '**/Dockerfile'
+      - '**/Dockerfile.j2'
   pull_request:
     paths:
       - '**/Dockerfile'
+      - '**/Dockerfile.j2'
+
   schedule:
     - cron: '0 0 * * 1'
 
