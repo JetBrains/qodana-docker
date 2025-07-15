@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push
-        uses: docker/bake-action@v5
+        uses: docker/bake-action@v6
         with:
           push: ${{ github.ref == 'refs/heads/main' }}
           workdir: ${{ matrix.version }}/base
