@@ -69,7 +69,7 @@ RUN echo "deb https://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-${CLANG} ma
 
 ARG QD_RELEASE="2025.2"
 ENV QD_VERSION="2025.2" QD_IMAGE="cpp-community"
-ARG QD_BUILD="QDCL-$QD_RELEASE"
+ARG QD_BUILD="QDCLC-$QD_RELEASE"
 # hadolint ignore=DL3003,SC2043
 RUN set -ex && \
     dpkgArch="$(dpkg --print-architecture)" && \
@@ -122,6 +122,6 @@ RUN if [ "$PRIVILEGED" = "true" ]; then \
         chmod +x /usr/bin/sudo; \
     fi
 
-LABEL maintainer="qodana-support@jetbrains.com" description="Qodana for C/C++ (https://jb.gg/qodana-clang)"
+LABEL maintainer="qodana-support@jetbrains.com" description="Qodana Community for C/C++ (https://jb.gg/qodana-clang)"
 WORKDIR /data/project
 ENTRYPOINT ["qodana", "scan"]
