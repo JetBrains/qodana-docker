@@ -3,13 +3,8 @@ FROM mcr.microsoft.com/dotnet/sdk:$DOTNET_BASE_TAG
 
 ENV HOME="/root" \
     LC_ALL="en_US.UTF-8" \
-    QODANA_DIST="/opt/idea" \
     QODANA_DATA="/data" \
     QODANA_DOCKER="true"
-
-ENV JAVA_HOME="$QODANA_DIST/jbr" \
-    QODANA_CONF="$HOME/.config/idea" \
-    PATH="$QODANA_DIST/bin:$PATH"
 
 ENV DOTNET_ROOT="/usr/share/dotnet"
 

@@ -3,6 +3,12 @@ ARG NODE_TAG="22-bookworm-slim"
 FROM node:$NODE_TAG AS node_base
 FROM dotnet-community
 
+ENV QODANA_DIST="/opt/idea"
+
+ENV JAVA_HOME="$QODANA_DIST/jbr" \
+    QODANA_CONF="$HOME/.config/idea" \
+    PATH="$QODANA_DIST/bin:$PATH"
+
 # renovate: datasource=npm depName=eslint
 ENV ESLINT_VERSION="9.31.0"
 # renovate: datasource=npm depName=pnpm

@@ -4,13 +4,8 @@ ARG CLANG="16"
 
 ENV HOME="/root" \
     LC_ALL="en_US.UTF-8" \
-    QODANA_DIST="/opt/idea" \
     QODANA_DATA="/data" \
     QODANA_DOCKER="true"
-
-ENV JAVA_HOME="$QODANA_DIST/jbr" \
-    QODANA_CONF="$HOME/.config/idea" \
-    PATH="/opt/qodana:$QODANA_DIST/bin:${PATH}"
 
 ENV CXX="/usr/lib/llvm-$CLANG/bin/clang++" \
     CC="/usr/lib/llvm-$CLANG/bin/clang" \
@@ -20,7 +15,7 @@ ENV CXX="/usr/lib/llvm-$CLANG/bin/clang++" \
 RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     --mount=target=/var/cache/apt,type=cache,sharing=locked \
     rm -f /etc/apt/apt.conf.d/docker-clean && \
-    mkdir -m 777 -p /opt/qodana $QODANA_DATA/project $QODANA_DATA/cache $QODANA_DATA/results && apt-get update && \
+    mkdir -m 777 -p $QODANA_DATA/project $QODANA_DATA/cache $QODANA_DATA/results && apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
