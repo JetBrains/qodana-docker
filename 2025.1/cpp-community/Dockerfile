@@ -6,13 +6,8 @@ ARG CLANG="16"
 
 ENV HOME="/root" \
     LC_ALL="en_US.UTF-8" \
-    QODANA_DIST="/opt/idea" \
     QODANA_DATA="/data" \
     QODANA_DOCKER="true"
-
-ENV JAVA_HOME="$QODANA_DIST/jbr" \
-    QODANA_CONF="$HOME/.config/idea" \
-    PATH="/opt/qodana:$QODANA_DIST/bin:${PATH}"
 
 ENV CXX="/usr/lib/llvm-$CLANG/bin/clang++" \
     CC="/usr/lib/llvm-$CLANG/bin/clang" \
@@ -22,7 +17,7 @@ ENV CXX="/usr/lib/llvm-$CLANG/bin/clang++" \
 RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     --mount=target=/var/cache/apt,type=cache,sharing=locked \
     rm -f /etc/apt/apt.conf.d/docker-clean && \
-    mkdir -m 777 -p /opt/qodana $QODANA_DATA/project $QODANA_DATA/cache $QODANA_DATA/results && apt-get update && \
+    mkdir -m 777 -p $QODANA_DATA/project $QODANA_DATA/cache $QODANA_DATA/results && apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
@@ -70,40 +65,6 @@ RUN echo "deb https://apt.llvm.org/bookworm/ llvm-toolchain-bookworm-${CLANG} ma
 ARG QD_RELEASE="2025.1"
 ENV QD_VERSION="2025.1" QD_IMAGE="cpp-community"
 ARG QD_BUILD="QDCLC-$QD_RELEASE"
-# hadolint ignore=DL3003,SC2043
-RUN set -ex && \
-    dpkgArch="$(dpkg --print-architecture)" && \
-    case "$dpkgArch" in \
-        "amd64") \
-            OS_ARCH_SUFFIX=""; \
-            ;; \
-        "arm64") \
-            OS_ARCH_SUFFIX="-aarch64"; \
-            ;; \
-        *) echo "Unsupported architecture $dpkgArch" >&2; exit 1 ;; \
-    esac && \
-    QD_NAME="qodana-$QD_BUILD$OS_ARCH_SUFFIX" \
-    QD_URL="https://download.jetbrains.com/qodana/$QD_RELEASE/$QD_NAME.tar.gz" && \
-    curl -fsSL "$QD_URL" -o "/tmp/$QD_NAME.tar.gz" \
-               "$QD_URL.sha256" -o "/tmp/$QD_NAME.tar.gz.sha256" \
-               "$QD_URL.sha256.asc" -o "/tmp/$QD_NAME.tar.gz.sha256.asc" && \
-    GNUPGHOME="$(mktemp -d)" && \
-    export GNUPGHOME && \
-    for key in \
-        "B46DC71E03FEEB7F89D1F2491F7A8F87B9D8F501" \
-      ; do \
-        gpg --batch --keyserver "hkps://keys.openpgp.org" --recv-keys "$key" || \
-        gpg --batch --keyserver "keyserver.ubuntu.com" --recv-keys "$key" ; \
-    done && \
-    gpg --verify "/tmp/$QD_NAME.tar.gz.sha256.asc" "/tmp/$QD_NAME.tar.gz.sha256" && \
-    (cd /tmp && sha256sum --check --status "$QD_NAME.tar.gz.sha256") && \
-    mkdir -p /tmp/qd /opt/qodana && tar -xzf "/tmp/$QD_NAME.tar.gz" --directory /opt/qodana  && \
-    mv /opt/qodana/qodana-* /opt/qodana/qodana && \
-    chmod +x /opt/qodana/qodana && \
-    apt-get purge --auto-remove -y gnupg2 && \
-    rm -rf /var/cache/apt /var/lib/apt/ /tmp/* "$GNUPGHOME"
-
-ENV PATH="/opt/qodana:${PATH}"
 
 ARG PRIVILEGED="false"
 ARG SUDO_SHA256="79eef9ec144c99809c3f037b17ec0936555d7e526ac0b2688eaa8b77e1452e4f"

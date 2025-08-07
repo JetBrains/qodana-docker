@@ -19,6 +19,7 @@ EXCLUDE_PATTERNS = (
     "2023.3/cnova",
     "2024.1/cnova",
     "*/ruby",
+    "2025.2/cpp",
 )
 
 RUNNERS = {

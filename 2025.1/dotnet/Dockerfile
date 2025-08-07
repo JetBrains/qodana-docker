@@ -8,13 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:$DOTNET_BASE_TAG
 
 ENV HOME="/root" \
     LC_ALL="en_US.UTF-8" \
-    QODANA_DIST="/opt/idea" \
     QODANA_DATA="/data" \
     QODANA_DOCKER="true"
-
-ENV JAVA_HOME="$QODANA_DIST/jbr" \
-    QODANA_CONF="$HOME/.config/idea" \
-    PATH="$QODANA_DIST/bin:$PATH"
 
 ENV DOTNET_ROOT="/usr/share/dotnet"
 
@@ -49,6 +44,12 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     chmod +x /tmp/dotnet-install.sh && \
     bash /tmp/dotnet-install.sh -c $DOTNET_CHANNEL_B -i $DOTNET_ROOT && \
     chmod 777 -R $DOTNET_ROOT $HOME
+
+ENV QODANA_DIST="/opt/idea"
+
+ENV JAVA_HOME="$QODANA_DIST/jbr" \
+    QODANA_CONF="$HOME/.config/idea" \
+    PATH="$QODANA_DIST/bin:$PATH"
 
 # renovate: datasource=npm depName=eslint
 ENV ESLINT_VERSION="9.31.0"
