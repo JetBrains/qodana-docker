@@ -196,13 +196,11 @@ RUN set -ex && \
 
 ARG PRIVILEGED="false"
 ARG SUDO_SHA256="79eef9ec144c99809c3f037b17ec0936555d7e526ac0b2688eaa8b77e1452e4f"
+RUN useradd qodana
 RUN if [ "$PRIVILEGED" = "true" ]; then \
         apt-get update && \
         apt-get install -y sudo && \
-        useradd -m -u 1001 -U qodana && \
-        passwd -d qodana && \
         echo 'qodana ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-        chmod 777 /etc/passwd && \
         rm -rf /var/cache/apt /var/lib/apt/ /tmp/*; \
     else \
         curl -fsSL "https://raw.githubusercontent.com/JetBrains/qodana-docker/refs/heads/main/sudo" -o /usr/bin/sudo && \
@@ -210,6 +208,7 @@ RUN if [ "$PRIVILEGED" = "true" ]; then \
         sha256sum --check --status /tmp/sudo.shasum && \
         chmod +x /usr/bin/sudo; \
     fi
+USER qodana
 
 LABEL maintainer="qodana-support@jetbrains.com" description="Qodana for C++ (https://jb.gg/qodana-cpp)"
 WORKDIR /data/project

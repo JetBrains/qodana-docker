@@ -127,20 +127,19 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     rm -rf /tmp/*{% endraw %}{% endif %}
 {% if variant == "ruby" or variant == "dotnet" or variant == "cpp" %}{% raw %}ARG PRIVILEGED="false"
 ARG SUDO_SHA256="79eef9ec144c99809c3f037b17ec0936555d7e526ac0b2688eaa8b77e1452e4f"
+RUN useradd qodana
 RUN if [ "$PRIVILEGED" = "true" ]; then \
         apt-get update && \
         apt-get install -y sudo && \
-        useradd -m -u 1001 -U qodana && \
-        passwd -d qodana && \
         echo 'qodana ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-        chmod 777 /etc/passwd && \
         rm -rf /var/cache/apt /var/lib/apt/ /tmp/*; \
     else \
         curl -fsSL "https://raw.githubusercontent.com/JetBrains/qodana-docker/refs/heads/main/sudo" -o /usr/bin/sudo && \
         echo "${SUDO_SHA256} /usr/bin/sudo" > /tmp/sudo.shasum && \
         sha256sum --check --status /tmp/sudo.shasum && \
         chmod +x /usr/bin/sudo; \
-    fi{% endraw %}
+    fi
+USER qodana{% endraw %}
 {% endif %}
 LABEL maintainer="qodana-support@jetbrains.com" description="{{ description }}"
 WORKDIR /data/project
