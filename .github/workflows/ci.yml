@@ -57,3 +57,5 @@ jobs:
           push: false
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            IDE_RELEASE_FEED=https://packages.jetbrains.team/files/p/sa/qdist/${{matrix.version}}/feed.json

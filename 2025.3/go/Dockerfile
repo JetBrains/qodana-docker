@@ -60,6 +60,7 @@ RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && \
 ARG QD_RELEASE=""
 ENV QD_VERSION="2025.3" QD_IMAGE="go"
 ARG QD_CODE="QDGO"
+ARG IDE_RELEASE_FEED="https://raw.githubusercontent.com/JetBrains/qodana-docker/refs/heads/main/feed/releases.json"
 # hadolint ignore=DL3003,SC2043
 RUN set -ex && \
     dpkgArch="$(dpkg --print-architecture)" && \
@@ -106,7 +107,7 @@ RUN set -ex && \
             *) echo "Unrecognized product code $QD_CODE" >&2; exit 1 ;; \
         esac && \
         RELEASE_JSON=$(\
-            curl https://raw.githubusercontent.com/JetBrains/qodana-docker/refs/heads/main/feed/releases.json |\
+            curl $IDE_RELEASE_FEED |\
             jq "[\
                 .[] |\
                 select(.Code==\"$RELEASE_CODE\") |\
@@ -117,7 +118,7 @@ RUN set -ex && \
             ] | .[-1]" \
         ) && \
         if [ "$RELEASE_JSON" = "null" ]; then \
-            echo "No release found for $RELEASE_CODE ($QD_CODE) $QD_VERSION in https://raw.githubusercontent.com/JetBrains/qodana-docker/refs/heads/main/feed/releases.json" \
+            echo "No release found for $RELEASE_CODE ($QD_CODE) $QD_VERSION in $IDE_RELEASE_FEED" \
                 >&2 && exit 1; \
         fi && \
         QD_BUILD="$QD_CODE-$(echo "$RELEASE_JSON" | jq -r '.Build')" && \
