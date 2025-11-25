@@ -33,6 +33,9 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
     bash <<-"EOF"
     set -euxo pipefail
 
+    rm -f /etc/apt/apt.conf.d/docker-clean
+    mkdir -m 777 -p "${QODANA_DATA}" "${QODANA_CONF}"
+
     apt-get update
     apt-get install -y --no-install-recommends \
         ca-certificates \
