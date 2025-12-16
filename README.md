@@ -1,5 +1,9 @@
 # Qodana Docker Images
 
+#### ⚠️ This repository is deprecated and [migrated to JetBrains/qodana-cli repository for 2026.1+ releases](https://github.com/JetBrains/qodana-cli/tree/main/dockerfiles)
+
+
+
 [![JetBrains project](https://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 [![GitHub Discussions](https://img.shields.io/github/discussions/jetbrains/qodana)][jb:discussions]
 [![Twitter Follow](https://img.shields.io/twitter/follow/Qodana?style=social&logo=twitter)][jb:twitter]
