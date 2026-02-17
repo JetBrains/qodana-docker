@@ -34,6 +34,7 @@ RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
         git-lfs \
         gnupg2 \
         locales \
+        openssh-client \
         procps \
         software-properties-common \
         zip \
@@ -141,8 +142,8 @@ RUN bash <<-"EOF"
     fi
 
     curl -fsSL "$QD_URL" -o "/tmp/$QD_NAME.tar.gz" \
-               "$QD_CHECKSUM_URL" -o "/tmp/$QD_NAME.tar.gz.sha256" \
-               "$QD_CHECKSUM_URL.asc" -o "/tmp/$QD_NAME.tar.gz.sha256.asc"
+        "$QD_CHECKSUM_URL" -o "/tmp/$QD_NAME.tar.gz.sha256" \
+        "$QD_CHECKSUM_URL.asc" -o "/tmp/$QD_NAME.tar.gz.sha256.asc"
 
     export GNUPGHOME="$(mktemp -d)"
     for key in "B46DC71E03FEEB7F89D1F2491F7A8F87B9D8F501"; do
