@@ -20,7 +20,7 @@ name.kropp.intellij.makefile
 Remote Development Server
 org.intellij.intelliLang
 Docker
-com.intellij.cidr.base
+com.intellij.cidr.lang
 com.intellij.cidr.lang.clangd
 com.intellij.clion.west
 com.intellij.clion
@@ -65,7 +65,6 @@ JSIntentionPowerPack
 com.jetbrains.linkerscript
 org.jetbrains.plugins.clangConfig
 org.jetbrains.plugins.clangFormat
-intellij.rider.cpp.debugger
 AngularJS
 com.jetbrains.codeWithMe
 com.intellij.modules.python
